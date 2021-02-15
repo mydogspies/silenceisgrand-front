@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        };
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:5000/api/v1/test')
+            .then(response => response.json())
+            .then(entries => this.setState({data: entries.data}));
+    }
+
+    render() {
+        return (
+            <div className="App">
+                {this.state.data.map(entry => (
+                    <h1 key={entry._id}>{entry.name}</h1>
+                ))}
+            </div>
+        )
+    }
 }
 
 export default App;
