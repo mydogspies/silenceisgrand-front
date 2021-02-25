@@ -1,26 +1,33 @@
 import {Component} from 'react';
-import './App.css';
+import DevPage from './pages/dev/devpage.component';
+
+import ('./App.scss');
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            devtest: []
         };
     }
 
+    // TODO must be changed to docker container
     componentDidMount() {
-        fetch('http://localhost:5000/api/v1/test')
-            .then(response => response.json())
-            .then(entries => this.setState({data: entries.data}));
+        // fetch('http://localhost:5000/api/v1/devtests/60377db1828b6346b22e76ec')
+        //     .then(response => response.json())
+        //     .then(entries => this.setState({devtest: entries.data}));
+
+        // TODO DEV ONLY!
+        const test = {
+            testString: 'silenceisgrand.com 2021'
+        }
+        this.setState({devtest: test})
     }
 
     render() {
         return (
-            <div className="App">
-                {this.state.data.map(entry => (
-                    <h1 key={entry._id}>{entry.name}</h1>
-                ))}
+            <div className="App dev-container">
+                    <DevPage devTest={this.state.devtest}/>
             </div>
         )
     }
