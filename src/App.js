@@ -13,21 +13,28 @@ class App extends Component {
 
     // TODO must be changed to docker container
     componentDidMount() {
-        // fetch('http://localhost:5000/api/v1/devtests/60377db1828b6346b22e76ec')
-        //     .then(response => response.json())
-        //     .then(entries => this.setState({devtest: entries.data}));
+        fetch('https://api.silenceisgrand.com/api/v1/devtests/60377db1828b6346b22e76ec')
+            .then(response => response.json())
+            .then(entries => this.setState({devtest: entries.data}))
+            .catch(error => {
+                console.log(error);
+                const test = {
+                    testString: 'silenceisgrand.com 2021 all rights reserved',
+                }
+                this.setState({devtest: test})
+            });
 
         // TODO DEV ONLY!
-        const test = {
-            testString: 'silenceisgrand.com 2021'
-        }
-        this.setState({devtest: test})
+        // const test = {
+        //     testString: 'silenceisgrand.com 2021'
+        // }
+        // this.setState({devtest: test})
     }
 
     render() {
         return (
             <div className="App dev-container">
-                    <DevPage devTest={this.state.devtest}/>
+                <DevPage devTest={this.state.devtest}/>
             </div>
         )
     }
