@@ -1,40 +1,46 @@
-import {Component} from 'react';
-import DevPage from './pages/dev/devpage.component';
+import React from 'react';
+import {Switch, Route} from 'react-router-dom';
 
-import ('./App.scss');
+import './App.scss';
 
-class App extends Component {
+import IndexPage from './pages/index/index-page';
+
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            devtest: []
+            // devtest: [] // TODO dev only
+            windowSize: ''
         };
     }
 
-    // TODO must be changed to docker container
+
+
     componentDidMount() {
-        fetch('https://api.silenceisgrand.com/api/v1/devtests/60377db1828b6346b22e76ec')
-            .then(response => response.json())
-            .then(entries => this.setState({devtest: entries.data}))
-            .catch(error => {
-                console.log(error);
-                const test = {
-                    testString: 'silenceisgrand.com 2021 all rights reserved',
-                }
-                this.setState({devtest: test})
-            });
+
+
 
         // TODO DEV ONLY!
-        // const test = {
-        //     testString: 'silenceisgrand.com 2021'
-        // }
-        // this.setState({devtest: test})
+        // fetch('https://api.silenceisgrand.com/api/v1/devtests/60377db1828b6346b22e76ec')
+        //     .then(response => response.json())
+        //     .then(entries => this.setState({devtest: entries.data}))
+        //     .catch(error => {
+        //         console.log(error);
+        //         const test = {
+        //             testString: 'silenceisgrand.com 2021 all rights reserved',
+        //         }
+        //         this.setState({devtest: test})
+        //     });
+
     }
 
     render() {
+
         return (
-            <div className="App dev-container">
-                <DevPage devTest={this.state.devtest}/>
+            <div>
+                <Switch>
+                    <Route exact path="/" component={IndexPage}/>
+                </Switch>
             </div>
         )
     }

@@ -1,0 +1,14 @@
+/*
+These are the global exports to be used in JS files.
+>> DO NOT IMPORT THIS FILE INTO ANOTHER SCSS FILE <<
+Styles referring to local single pages or components should NEVER reside here
+GNU General Public License v3.0 - [ github.com/mydogspies ]
+*/
+
+@import 'colors';
+
+:export {
+  /* PAGE COLORS */
+  backgroundColorPhoto: $background-color-photo;
+  textColorPhoto: $text-color-photo;
+}
