@@ -1,23 +1,16 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import './App.scss';
 
 import IndexPage from './pages/index/index-page';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // devtest: [] // TODO dev only
-            windowSize: ''
-        };
-    }
-
-
 
     componentDidMount() {
 
+        // window.addEventListener('scroll', this.onScroll);
 
 
         // TODO DEV ONLY!
@@ -34,10 +27,22 @@ class App extends React.Component {
 
     }
 
+    componentWillUnmount() {
+
+        // window.removeEventListener('scroll', this.onScroll);
+    }
+
+    onScroll() {
+        // console.log(window.scrollY);
+    }
+
+
     render() {
 
         return (
-            <div>
+            <div className='appContainer' style={{
+                backgroundColor: this.props.currentBackground
+            }}>
                 <Switch>
                     <Route exact path="/" component={IndexPage}/>
                 </Switch>
@@ -46,4 +51,8 @@ class App extends React.Component {
     }
 }
 
-export default App;
+const mapStateToProps = state => ({
+    currentBackground: state.style.currentBackground
+});
+
+export default connect(mapStateToProps)(App);

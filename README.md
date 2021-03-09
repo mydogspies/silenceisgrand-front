@@ -4,7 +4,7 @@
 Silenceisgrand.com is a visual art project run by Berlin-based visual artist Silenceisgrand.
 The project can be found at [https://www.silenceisgrand.com] and is part of several art
 projects. As a firm believer in open source and copy-left license forms, the source code for
-this project can be found here. This repo is the React/MongoDB front end.
+this project can be found here. This repo is the React/Redux/MongoDB front end.
 
 ####IMPORTANT
 
