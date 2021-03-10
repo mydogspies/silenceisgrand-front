@@ -6,10 +6,15 @@ GNU General Public License v3.0 - [ github.com/mydogspies ]
 
 // TODO should be refactored into app.js as css-in.js
 
-@import 'src/styles/fonts';
+/* FONT DEFAULTS */
+@import url('https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+$header-font-default: 'Rufina', serif;
+$paragraph-font-default: 'Crimson Text', serif;
+
 
 /* GLOBAL DEFAULTS */
-body {
+p {
   font-family: $paragraph-font-default;
   font-weight: normal;
 }

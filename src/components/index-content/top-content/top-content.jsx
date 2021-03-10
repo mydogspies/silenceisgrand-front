@@ -5,47 +5,74 @@ import {ReactComponent as Mycolors} from '../../../assets/sig_mycolors.svg';
 
 const TopContent = () => {
     return (
-        <Container>
-            <Text>
-                <div>
-                    <Headline>a manifest to art is what an airplane is to the sky</Headline>
-                </div>
-                <div>
-                    <Paragraph>things will be written in history as they are drawn into our canvas</Paragraph>
-                </div>
-            </Text>
-
-            <Image>
-                <Mycolors />
-            </Image>
-
-        </Container>
+        <Grid>
+            <Mycolors />
+            <Headline>a manifest to art is what an airplane is to the sky</Headline>
+            <Paragraph>shapes will be written in history as they are drawn onto this canvas</Paragraph>
+        </Grid>
     );
 };
 
 /* CSS */
-const Container = styled.div`
-  width: 45%;
-`;
+const Grid = styled.div`
+  display: grid;
+  height: 500px;
+  width: 850px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1.2fr;
 
-const Text = styled.div`
-  width: 50%;
-  float: left;
+  @media screen and (max-width: 950px) {
+    padding: 100px 0 0 0;
+    height: 400px;
+    width: 600px;
+    grid-template-rows: 1fr 1.5fr;
+  }
+
+  @media screen and (max-width: 660px) {
+    padding: 50px 0 0 0;
+    margin: 0 auto;
+    width: 65%;
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 5fr;
+  }
 `;
 
 const Headline = styled.h1`
-  margin: 10% 0 0 0;
-    font-size: 30px;
+  margin: 25% 0 0 10px;
+  font-size: 34px;
+  font-weight: bold;
+  grid-column-start: 1;
+  grid-row-start: 1;
+
+  @media screen and (max-width: 950px) {
+    font-size: 25px;
+    margin: 20% 0 0 0;
+  }
+
+  @media screen and (max-width: 660px) {
+    margin: 20px 0 0 0;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    font-size: 27px;
+  }
 `;
 
 const Paragraph = styled.p`
-  margin: 10% 0 0 0;
-    font-size: 20px;
-`;
+  font-size: 24px;
+  grid-column-start: 1;
+  grid-row-start: 2;
 
-const Image = styled.div`
-  width: 400px;
-    float: right;
+  @media screen and (max-width: 950px) {
+    font-size: 18px;
+  }
+
+  @media screen and (max-width: 660px) {
+    margin: 17px 0 20px 0;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    font-size: 20px;
+  }
 `;
 
 export default TopContent;

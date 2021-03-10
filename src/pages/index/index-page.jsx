@@ -8,6 +8,9 @@ import IndexMixed from '../../components/index-roll/index-mixed-media/index-mixe
 import IndexBlog from '../../components/index-roll/index-blog/index-blog';
 import IndexFooter from '../../components/index-roll/index-footer/index-footer';
 
+import MenuButton from '../../components/navigation/menu-button/menu-button';
+import AboutButton from '../../components/navigation/menu-about/menu-about'
+
 // TODO should be refactored into css-in-js!
 import '../../styles/global.scss';
 
@@ -15,6 +18,8 @@ const IndexPage = () => {
 
     return (
         <div>
+            <AboutButton />
+            <MenuButton />
             <IndexTop />
             <IndexPhoto />
             <IndexIllustration />

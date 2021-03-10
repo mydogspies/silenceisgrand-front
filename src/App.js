@@ -57,5 +57,4 @@ const Container = styled.div`
   transition: background-color 0.6s ease-out;
   background-color: ${props => props.currentcolor};
 `
-
 export default connect(mapStateToProps)(App);
