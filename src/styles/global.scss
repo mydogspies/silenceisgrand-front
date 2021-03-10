@@ -4,15 +4,14 @@ Styles referring to single pages or components should not reside here
 GNU General Public License v3.0 - [ github.com/mydogspies ]
 */
 
-@import 'src/styles/colors';
+// TODO should be refactored into app.js as css-in.js
+
 @import 'src/styles/fonts';
 
 /* GLOBAL DEFAULTS */
 body {
   font-family: $paragraph-font-default;
   font-weight: normal;
-  background-color: $background-color-default;
-  color: $text-color-default;
 }
 h1, h2, h3 {
   font-family: $header-font-default;

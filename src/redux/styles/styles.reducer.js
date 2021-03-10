@@ -1,6 +1,5 @@
 import globalStyles from '../../styles/_exports.module.scss';
 
-
 const INITIAL_STATE = {
     currentBackground: globalStyles.backgroundColorDefault
 }

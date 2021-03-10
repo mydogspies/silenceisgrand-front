@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import globalStyles from '../../../styles/_exports.module.scss';
 import {setCurrentBackground} from '../../../redux/styles/styles.actions'
 
-const IndexPhoto = ({setCurrentBackground}) => {
+const IndexMixed = ({setCurrentBackground}) => {
     /* Checks however component is visible withing browser window */
     const [ref, inView] = useInView({
         threshold: .5
@@ -14,14 +14,14 @@ const IndexPhoto = ({setCurrentBackground}) => {
 
     useEffect(() => {
         if (inView) {
-            setCurrentBackground(globalStyles.backgroundColorPhoto);
+            setCurrentBackground(globalStyles.backgroundColorMixed);
         }
     })
 
     return (
-        <Container ref={ref} className="index-photo-container">
-            <h1>photography by design or by intuition but always daring</h1>
-            <p>many images small or big but the text must be epic</p>
+        <Container ref={ref} className="index-mixed-container">
+            <h1>MIXED MEDIA</h1>
+            <p>freaking paint over those prints before we pour concrete on it!</p>
         </Container>
     );
 };
@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
 /* CSS */
 const Container = styled.div`
   height: 100vh;
-  color: ${globalStyles.textColorPhoto};
+  color: ${globalStyles.textColorMixed};
 `;
 
-export default connect(null, mapDispatchToProps)(IndexPhoto);
+export default connect(null, mapDispatchToProps)(IndexMixed);

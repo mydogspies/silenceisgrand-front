@@ -1,15 +1,44 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {useInView} from 'react-intersection-observer';
+import styled from 'styled-components';
 
-import './index-top.styles.scss';
+import globalStyles from '../../../styles/_exports.module.scss';
+import {setCurrentBackground} from '../../../redux/styles/styles.actions'
 
-const IndexTop = () => {
+import TopContent from '../../index-content/top-content/top-content';
+
+const IndexTop = ({setCurrentBackground}) => {
+    /* Checks however component is visible withing browser window */
+    const [ref, inView] = useInView({
+        threshold: .5
+    });
+
+    useEffect(() => {
+        if (inView) {
+            setCurrentBackground(globalStyles.backgroundColorIllustration);
+        }
+    })
 
     return (
-        <div className="index-top-container">
-            <h1>a manifest to art is what airplanes are to the sky</h1>
-            <p>stuff are being written as they are drawn</p>
-        </div>
+        <Container ref={ref} className="index-top-container">
+            <TopContent />
+        </Container>
     );
 };
 
-export default IndexTop;
+/* Notify store of current color values */
+const mapDispatchToProps = dispatch => ({
+    setCurrentBackground: background => dispatch(setCurrentBackground(background))
+});
+
+/* CSS */
+const Container = styled.div`
+  height: 100vh;
+  color: ${globalStyles.textColorDefault};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export default connect(null, mapDispatchToProps)(IndexTop);

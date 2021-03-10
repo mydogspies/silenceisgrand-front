@@ -1,6 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
+import styled from 'styled-components';
 
 import './App.scss';
 
@@ -36,17 +37,14 @@ class App extends React.Component {
         // console.log(window.scrollY);
     }
 
-
     render() {
 
         return (
-            <div className='appContainer' style={{
-                backgroundColor: this.props.currentBackground
-            }}>
+            <Container className='appContainer' currentcolor={this.props.currentBackground}>
                 <Switch>
                     <Route exact path="/" component={IndexPage}/>
                 </Switch>
-            </div>
+            </Container>
         )
     }
 }
@@ -54,5 +52,10 @@ class App extends React.Component {
 const mapStateToProps = state => ({
     currentBackground: state.style.currentBackground
 });
+
+const Container = styled.div`
+  transition: background-color 0.6s ease-out;
+  background-color: ${props => props.currentcolor};
+`
 
 export default connect(mapStateToProps)(App);
