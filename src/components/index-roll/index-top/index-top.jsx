@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
 import {useInView} from 'react-intersection-observer';
 import styled from 'styled-components';
-
+import  {useDispatch} from 'react-redux';
 import globalStyles from '../../../styles/_exports.module.scss';
-import {setCurrentBackground} from '../../../redux/styles/styles.actions'
+import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions'
 
 import TopContent from '../../index-content/top-content/top-content';
 
-const IndexTop = ({setCurrentBackground}) => {
+const IndexTop = () => {
+    const dispatch = useDispatch();
+
     /* Checks however component is visible withing browser window */
     const [ref, inView] = useInView({
         threshold: .5
@@ -16,7 +17,8 @@ const IndexTop = ({setCurrentBackground}) => {
 
     useEffect(() => {
         if (inView) {
-            setCurrentBackground(globalStyles.backgroundColorIllustration);
+            dispatch(setCurrentTextColor(globalStyles.textColorDefault));
+            dispatch(setCurrentBackground(globalStyles.backgroundColorDefault))
         }
     })
 
@@ -26,11 +28,6 @@ const IndexTop = ({setCurrentBackground}) => {
         </Container>
     );
 };
-
-/* Notify store of current color values */
-const mapDispatchToProps = dispatch => ({
-    setCurrentBackground: background => dispatch(setCurrentBackground(background))
-});
 
 /* CSS */
 const Container = styled.div`
@@ -45,4 +42,4 @@ const Container = styled.div`
   }
 `;
 
-export default connect(null, mapDispatchToProps)(IndexTop);
+export default IndexTop;

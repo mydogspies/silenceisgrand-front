@@ -1,12 +1,15 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import {useDispatch} from "react-redux";
 import {useInView} from 'react-intersection-observer';
 import styled from 'styled-components';
 
 import globalStyles from '../../../styles/_exports.module.scss';
-import {setCurrentBackground} from '../../../redux/styles/styles.actions'
+import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions'
 
-const IndexPhoto = ({setCurrentBackground}) => {
+const IndexPhoto = () => {
+
+    const dispatch = useDispatch();
+
     /* Checks however component is visible withing browser window */
     const [ref, inView] = useInView({
         threshold: .5
@@ -14,7 +17,8 @@ const IndexPhoto = ({setCurrentBackground}) => {
 
     useEffect(() => {
         if (inView) {
-            setCurrentBackground(globalStyles.backgroundColorPhoto);
+            dispatch(setCurrentTextColor(globalStyles.textColorPhoto));
+            dispatch(setCurrentBackground(globalStyles.backgroundColorPhoto))
         }
     })
 
@@ -26,10 +30,6 @@ const IndexPhoto = ({setCurrentBackground}) => {
     );
 };
 
-/* Notify store of current color values */
-const mapDispatchToProps = dispatch => ({
-    setCurrentBackground: background => dispatch(setCurrentBackground(background))
-});
 
 /* CSS */
 const Container = styled.div`
@@ -37,4 +37,4 @@ const Container = styled.div`
   color: ${globalStyles.textColorPhoto};
 `;
 
-export default connect(null, mapDispatchToProps)(IndexPhoto);
+export default IndexPhoto;

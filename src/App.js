@@ -37,6 +37,8 @@ class App extends React.Component {
         // console.log(window.scrollY);
     }
 
+
+
     render() {
 
         return (
@@ -50,7 +52,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    currentBackground: state.style.currentBackground
+    currentBackground: state.styles.currentBackground
 });
 
 const Container = styled.div`

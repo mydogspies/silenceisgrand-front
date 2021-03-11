@@ -11,6 +11,11 @@ const stylesReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 currentBackground: action.payload
             }
+        case 'SET_CURRENT_TEXTCOLOR':
+            return {
+                ...state,
+                currentTextColor: action.payload
+            }
         default:
             return state;
     }
