@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {connect} from 'react-redux';
 import { useHistory } from "react-router-dom";
 
+import {convertHexToFilter} from '../../../utils/utils-color';
 
 import {ReactComponent as Abouticon} from './menu-about.svg';
 
