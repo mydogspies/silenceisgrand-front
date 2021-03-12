@@ -1,7 +1,7 @@
-import globalStyles from '../../styles/_exports.module.scss';
+import {COLORS} from '../../styles/styles';
 
 const INITIAL_STATE = {
-    currentBackground: globalStyles.backgroundColorDefault
+    currentBackground: COLORS.backgroundColorDefault
 }
 
 const stylesReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +10,11 @@ const stylesReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 currentBackground: action.payload
+            }
+        case 'SET_CURRENT_TEXTCOLOR':
+            return {
+                ...state,
+                currentTextColor: action.payload
             }
         default:
             return state;

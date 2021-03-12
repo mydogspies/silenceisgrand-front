@@ -1,12 +1,16 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
 import {useInView} from 'react-intersection-observer';
 import styled from 'styled-components';
+import {useDispatch} from 'react-redux';
 
-import globalStyles from '../../../styles/_exports.module.scss';
-import {setCurrentBackground} from '../../../redux/styles/styles.actions'
+import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions';
 
-const IndexMixed = ({setCurrentBackground}) => {
+import {COLORS} from '../../../styles/styles';
+
+const IndexMixed = () => {
+
+    const dispatch = useDispatch();
+
     /* Checks however component is visible withing browser window */
     const [ref, inView] = useInView({
         threshold: .5
@@ -14,7 +18,8 @@ const IndexMixed = ({setCurrentBackground}) => {
 
     useEffect(() => {
         if (inView) {
-            setCurrentBackground(globalStyles.backgroundColorMixed);
+            dispatch(setCurrentBackground(COLORS.backgroundColorMixed));
+            dispatch(setCurrentTextColor(COLORS.textColorMixed));
         }
     })
 
@@ -26,15 +31,10 @@ const IndexMixed = ({setCurrentBackground}) => {
     );
 };
 
-/* Notify store of current color values */
-const mapDispatchToProps = dispatch => ({
-    setCurrentBackground: background => dispatch(setCurrentBackground(background))
-});
-
 /* CSS */
 const Container = styled.div`
   height: 100vh;
-  color: ${globalStyles.textColorMixed};
+  color: ${COLORS.textColorMixed};
 `;
 
-export default connect(null, mapDispatchToProps)(IndexMixed);
+export default IndexMixed;
