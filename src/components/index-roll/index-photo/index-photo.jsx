@@ -3,8 +3,9 @@ import {useDispatch} from "react-redux";
 import {useInView} from 'react-intersection-observer';
 import styled from 'styled-components';
 
-import globalStyles from '../../../styles/_exports.module.scss';
 import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions'
+
+import {COLORS} from '../../../styles/styles';
 
 const IndexPhoto = () => {
 
@@ -17,8 +18,8 @@ const IndexPhoto = () => {
 
     useEffect(() => {
         if (inView) {
-            dispatch(setCurrentTextColor(globalStyles.textColorPhoto));
-            dispatch(setCurrentBackground(globalStyles.backgroundColorPhoto))
+            dispatch(setCurrentTextColor(COLORS.textColorPhoto));
+            dispatch(setCurrentBackground(COLORS.backgroundColorPhoto))
         }
     })
 
@@ -34,7 +35,7 @@ const IndexPhoto = () => {
 /* CSS */
 const Container = styled.div`
   height: 100vh;
-  color: ${globalStyles.textColorPhoto};
+  color: ${COLORS.textColorPhoto};
 `;
 
 export default IndexPhoto;

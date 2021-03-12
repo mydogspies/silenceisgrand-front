@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import IndexTop from '../../components/index-roll/index-top/index-top';
 import IndexPhoto from '../../components/index-roll/index-photo/index-photo';
 import IndexIllustration from '../../components/index-roll/index-illustration/index-illustration';
@@ -10,9 +9,6 @@ import IndexFooter from '../../components/index-roll/index-footer/index-footer';
 
 import MenuButton from '../../components/navigation/menu-button/menu-button';
 import AboutButton from '../../components/navigation/menu-about/menu-about'
-
-// TODO should be refactored into css-in-js!
-import '../../styles/global.scss';
 
 const IndexPage = () => {
 

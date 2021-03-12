@@ -3,7 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
 
-import './App.scss';
+import './styles/global.scss';
 
 import IndexPage from './pages/index/index-page';
 
@@ -55,8 +55,10 @@ const mapStateToProps = state => ({
     currentBackground: state.styles.currentBackground
 });
 
+/* CSS - Does the color transition for backgrounds */
 const Container = styled.div`
   transition: background-color 0.6s ease-out;
   background-color: ${props => props.currentcolor};
-`
+`;
+
 export default connect(mapStateToProps)(App);

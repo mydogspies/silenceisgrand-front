@@ -1,7 +1,7 @@
-import globalStyles from '../../styles/_exports.module.scss';
+import {COLORS} from '../../styles/styles';
 
 const INITIAL_STATE = {
-    currentBackground: globalStyles.backgroundColorDefault
+    currentBackground: COLORS.backgroundColorDefault
 }
 
 const stylesReducer = (state = INITIAL_STATE, action) => {

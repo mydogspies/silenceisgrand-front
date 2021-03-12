@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
 import {useInView} from 'react-intersection-observer';
 import styled from 'styled-components';
+import {useDispatch} from 'react-redux';
 
-import globalStyles from '../../../styles/_exports.module.scss';
-import {setCurrentBackground} from '../../../redux/styles/styles.actions'
+import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions';
 
-const IndexBlog = ({setCurrentBackground}) => {
+import {COLORS} from '../../../styles/styles';
+
+const IndexBlog = () => {
+    const dispatch = useDispatch();
     /* Checks however component is visible withing browser window */
     const [ref, inView] = useInView({
         threshold: .5
@@ -14,7 +16,8 @@ const IndexBlog = ({setCurrentBackground}) => {
 
     useEffect(() => {
         if (inView) {
-            setCurrentBackground(globalStyles.backgroundColorBlog);
+            dispatch(setCurrentBackground(COLORS.backgroundColorBlog));
+            dispatch(setCurrentTextColor(COLORS.textColorBlog));
         }
     })
 
@@ -26,15 +29,10 @@ const IndexBlog = ({setCurrentBackground}) => {
     );
 };
 
-/* Notify store of current color values */
-const mapDispatchToProps = dispatch => ({
-    setCurrentBackground: background => dispatch(setCurrentBackground(background))
-});
-
 /* CSS */
 const Container = styled.div`
   height: 100vh;
-  color: ${globalStyles.textColorBlog};
+  color: ${COLORS.textColorBlog};
 `;
 
-export default connect(null, mapDispatchToProps)(IndexBlog);
+export default IndexBlog;

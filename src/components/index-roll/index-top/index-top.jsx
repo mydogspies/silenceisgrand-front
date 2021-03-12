@@ -2,8 +2,9 @@ import React, {useEffect} from 'react';
 import {useInView} from 'react-intersection-observer';
 import styled from 'styled-components';
 import  {useDispatch} from 'react-redux';
-import globalStyles from '../../../styles/_exports.module.scss';
 import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions'
+
+import {COLORS} from '../../../styles/styles';
 
 import TopContent from '../../index-content/top-content/top-content';
 
@@ -17,8 +18,8 @@ const IndexTop = () => {
 
     useEffect(() => {
         if (inView) {
-            dispatch(setCurrentTextColor(globalStyles.textColorDefault));
-            dispatch(setCurrentBackground(globalStyles.backgroundColorDefault))
+            dispatch(setCurrentTextColor(COLORS.textColorDefault));
+            dispatch(setCurrentBackground(COLORS.backgroundColorDefault))
         }
     })
 
@@ -32,7 +33,7 @@ const IndexTop = () => {
 /* CSS */
 const Container = styled.div`
   height: 100vh;
-  color: ${globalStyles.textColorDefault};
+  color: ${COLORS.textColorDefault};
   display: flex;
   justify-content: center;
   align-items: center;
