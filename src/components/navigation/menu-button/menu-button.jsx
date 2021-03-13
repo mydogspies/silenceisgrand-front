@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
 import {ReactComponent as Menuicon} from './menu-button.svg';
+import {MenuButtonEffects} from '../effects/menu-button-effects'
 
 const MenuButton = () => {
 
@@ -27,13 +28,20 @@ const MenuButton = () => {
 
 
 /* CSS */
-const Button = styled.button`
-  background-color: transparent;
+const Button = styled(MenuButtonEffects)`
+  width: 60px;
   border: none;
   margin: 10px 10px 0 0;
   position: fixed;
   right: 0;
   top: 0;
+  @media all and (max-width: 1100px) and (min-width: 760px) {
+    width: 40px;
+  }
+
+  @media all and (max-width: 759px) {
+    width: 38px;
+  }
 `;
 
 export default MenuButton;

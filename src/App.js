@@ -2,6 +2,9 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
+import _ from 'lodash';
+
+import {setScrollEvent} from "./redux/events/events.actions";
 
 import './styles/global.scss';
 
@@ -9,9 +12,16 @@ import IndexPage from './pages/index/index-page';
 
 class App extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.onScroll = this.onScroll.bind(this);
+        this.onScrollThrottle = _.throttle(this.onScroll, 500);
+    }
+
+
     componentDidMount() {
 
-        // window.addEventListener('scroll', this.onScroll);
+        window.addEventListener('scroll', this.onScrollThrottle);
 
 
         // TODO DEV ONLY!
@@ -30,19 +40,20 @@ class App extends React.Component {
 
     componentWillUnmount() {
 
-        // window.removeEventListener('scroll', this.onScroll);
+        window.removeEventListener('scroll', this.onScrollThrottle);
     }
 
-    onScroll() {
-        // console.log(window.scrollY);
+    onScroll = (e) => {
+        // console.log(e.type)
+        this.props.sendScrollEvent(e);
     }
-
-
 
     render() {
 
         return (
-            <Container className='appContainer' currentcolor={this.props.currentBackground}>
+            <Container className='appContainer'
+                       currentcolor={this.props.currentBackground}
+                       onScroll={this.onScroll}>
                 <Switch>
                     <Route exact path="/" component={IndexPage}/>
                 </Switch>
@@ -55,10 +66,18 @@ const mapStateToProps = state => ({
     currentBackground: state.styles.currentBackground
 });
 
+const mapDispatchToProps = dispatch => {
+    return {
+        sendScrollEvent: (e) => {
+            dispatch(setScrollEvent(e))
+        }
+    }
+};
+
 /* CSS - Does the color transition for backgrounds */
 const Container = styled.div`
   transition: background-color 0.6s ease-out;
   background-color: ${props => props.currentcolor};
 `;
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

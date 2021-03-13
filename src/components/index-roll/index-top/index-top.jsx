@@ -37,10 +37,6 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media screen and (max-width: 660px) {
-    display: block;
-  }
 `;
 
 export default IndexTop;

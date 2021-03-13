@@ -1,76 +1,165 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, {useState, useEffect, useRef} from 'react';
+import styled, {css} from 'styled-components';
+import {useSelector} from 'react-redux';
 
 import {ReactComponent as Mycolors} from '../../../assets/sig_mycolors.svg';
 
 const TopContent = () => {
+
+    const [animationId, setAnimationId] = useState('noscroll');
+    const timer = useRef(0);
+
+    /* Grab the state of the scroll event from the main app */
+    const store = useSelector(state => state);
+    const currentScrollEvent = store.events.currentScrollEvent;
+
+    useEffect(() => {
+
+        if (currentScrollEvent !== null && currentScrollEvent.type === 'scroll') {
+
+            if(animationId === 'scroll') {
+                return () => {
+                    setAnimationId('noscroll');
+                    clearTimeout(timer.current);
+                };
+            }
+
+            setAnimationId('scroll');
+
+            timer.current = setTimeout(() => setAnimationId('noscroll'), 2000);
+
+            return () => {
+                clearTimeout(timer.current);
+            };
+
+        }
+
+    }, [currentScrollEvent]);
+
     return (
         <Grid>
-            <Mycolors />
-            <Headline>a manifest to art is what an airplane is to the sky</Headline>
-            <Paragraph>shapes will be written in history as they are drawn onto this canvas</Paragraph>
+            <Logo >
+                <Mycolors id={animationId}/>
+            </Logo>
+            <Headline className="headline"><h1>a manifest to art is what an airplane is to the sky</h1></Headline>
+            <Paragraph><p>shapes will be written in history as they are drawn onto this canvas</p></Paragraph>
         </Grid>
     );
 };
 
 /* CSS */
 const Grid = styled.div`
+  position: relative;
   display: grid;
+  top: -40px;
   height: 500px;
   width: 850px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1.2fr;
-
-  @media screen and (max-width: 950px) {
-    padding: 100px 0 0 0;
-    height: 400px;
-    width: 600px;
-    grid-template-rows: 1fr 1.5fr;
+  grid-template-rows: 1fr 1fr;
+  
+  /* The animation on scroll targeting the Logo only*/
+  #scroll {
+    animation-name: slide;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes slide {
+    0% {
+      transform: rotate(0deg);
+    }
+    40% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
   }
 
-  @media screen and (max-width: 660px) {
-    padding: 50px 0 0 0;
-    margin: 0 auto;
-    width: 65%;
-    height: 100%;
+  @media all and (max-width: 1100px) and (min-width: 760px) {
+    width: 650px;
+  }
+
+  @media all and (max-width: 759px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 5fr;
+    grid-template-rows: 1fr auto;
+    width: 80%;
+    height: auto;
   }
 `;
 
-const Headline = styled.h1`
-  margin: 25% 0 0 10px;
-  font-size: 34px;
-  font-weight: bold;
-  grid-column-start: 1;
+const Logo = styled.div`
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  grid-column-start: 2;
   grid-row-start: 1;
+  grid-row-end: -1;
+  filter: drop-shadow(0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.08));
 
-  @media screen and (max-width: 950px) {
-    font-size: 25px;
-    margin: 20% 0 0 0;
+  @media all and (max-width: 1100px) and (min-width: 760px) {
+    width: 390px;
+    filter: drop-shadow(0.35rem 0.25rem 0.15rem rgba(0, 0, 0, 0.06));
   }
 
-  @media screen and (max-width: 660px) {
-    margin: 20px 0 0 0;
+  @media all and (max-width: 759px) {
+    position: relative;
+    transform: translate(0, 0);
+    top: -25px;
+    left: 0;
     grid-column-start: 1;
     grid-row-start: 1;
-    font-size: 27px;
+    grid-row-end: 1;
+    justify-self: center;
+    width: 80%;
+    filter: drop-shadow(0.25rem 0.15rem 0.1rem rgba(0, 0, 0, 0.07));
   }
 `;
 
-const Paragraph = styled.p`
-  font-size: 24px;
+const Headline = styled.div`
   grid-column-start: 1;
-  grid-row-start: 2;
+  grid-row-start: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 20px 4px;
+  font-size: 34px;
+  font-weight: bold;
+  transform: rotate(-1deg);
 
-  @media screen and (max-width: 950px) {
-    font-size: 18px;
+  @media all and (max-width: 1100px) and (min-width: 760px) {
+    font-size: 28px;
+    font-weight: bold;
   }
 
-  @media screen and (max-width: 660px) {
-    margin: 17px 0 20px 0;
+  @media all and (max-width: 759px) {
     grid-column-start: 1;
     grid-row-start: 2;
+    align-items: flex-start;
+    justify-self: center;
+    width: 300px;
+    padding: 0 0 0 18px;
+    font-size: 25px;
+    transform: rotate(0.5deg);
+  }
+`;
+
+const Paragraph = styled.div`
+  grid-column-start: 1;
+  grid-row-start: 2;
+  padding: 30px 0 0 0;
+  font-size: 24px;
+
+  @media all and (max-width: 1100px) and (min-width: 760px) {
+    font-size: 20px;
+  }
+
+  @media all and (max-width: 759px) {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    justify-self: center;
+    width: 280px;
+    padding: 23px 0 0 6px;
     font-size: 20px;
   }
 `;

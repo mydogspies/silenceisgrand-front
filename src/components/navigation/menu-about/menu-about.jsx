@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 
 import {ReactComponent as Abouticon} from './menu-about.svg';
+import {MenuButtonEffects} from '../effects/menu-button-effects';
 
 const AboutButton = () => {
 
@@ -17,22 +18,29 @@ const AboutButton = () => {
     }
 
     return (
-        <Button>
+        <Icon>
             <Abouticon onClick={redirect} style={{
                 fill: `${currentTextColor}`
             }} />
-        </Button>
+        </Icon>
     );
 };
 
 /* CSS */
-const Button = styled.button`
-  background-color: transparent;
+const Icon = styled(MenuButtonEffects)`
+  width: 60px;
   border: none;
-  margin: 0 10px 10px 0;
   position: fixed;
-  right: 0;
-  bottom: 0;
+  right: 10px;
+  bottom: 10px;
+
+  @media all and (max-width: 1100px) and (min-width: 760px) {
+    width: 40px;
+  }
+
+  @media all and (max-width: 759px) {
+    width: 38px;
+  }
 `;
 
 export default AboutButton;

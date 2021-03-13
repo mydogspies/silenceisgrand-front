@@ -1,7 +1,8 @@
 import {COLORS} from '../../styles/styles';
 
 const INITIAL_STATE = {
-    currentBackground: COLORS.backgroundColorDefault
+    currentBackground: COLORS.backgroundColorDefault,
+    currentTextColor: COLORS.textColorDefault
 }
 
 const stylesReducer = (state = INITIAL_STATE, action) => {
