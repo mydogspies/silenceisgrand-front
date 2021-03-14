@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {useInView} from 'react-intersection-observer';
 import styled from 'styled-components';
-import  {useDispatch} from 'react-redux';
-import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions'
+import {useDispatch} from 'react-redux';
+
+import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions';
+import {setCurrentVisibleComponent} from '../../../redux/events/events.actions';
 
 import {COLORS} from '../../../styles/styles';
 
@@ -19,12 +21,13 @@ const IndexTop = () => {
     useEffect(() => {
         if (inView) {
             dispatch(setCurrentTextColor(COLORS.textColorDefault));
-            dispatch(setCurrentBackground(COLORS.backgroundColorDefault))
+            dispatch(setCurrentBackground(COLORS.backgroundColorDefault));
+            dispatch(setCurrentVisibleComponent('index-top'));
         }
-    })
+    }, [dispatch, inView]);
 
     return (
-        <Container ref={ref} className="index-top-container">
+        <Container ref={ref} className="index-top-container" id="index-top">
             <TopContent />
         </Container>
     );

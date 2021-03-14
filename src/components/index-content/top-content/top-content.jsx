@@ -10,29 +10,29 @@ const TopContent = () => {
     const timer = useRef(0);
 
     /* Grab the state of the scroll event from the main app */
-    const store = useSelector(state => state);
-    const currentScrollEvent = store.events.currentScrollEvent;
+    const events = useSelector(state => state.events);
+    const currentScrollEvent = events.currentScrollEvent;
 
     useEffect(() => {
 
-        if (currentScrollEvent !== null && currentScrollEvent.type === 'scroll') {
-
-            if(animationId === 'scroll') {
-                return () => {
-                    setAnimationId('noscroll');
-                    clearTimeout(timer.current);
-                };
-            }
-
-            setAnimationId('scroll');
-
-            timer.current = setTimeout(() => setAnimationId('noscroll'), 2000);
-
-            return () => {
-                clearTimeout(timer.current);
-            };
-
-        }
+        // TODO animation logic
+        // if (currentScrollEvent !== null && currentScrollEvent.type === 'scroll') {
+        //
+        //     if(animationId === 'scroll') {
+        //         return () => {
+        //             setAnimationId('noscroll');
+        //             clearTimeout(timer.current);
+        //         };
+        //     }
+        //
+        //     setAnimationId('scroll');
+        //
+        //     timer.current = setTimeout(() => setAnimationId('noscroll'), 2000);
+        //
+        //     return () => {
+        //         clearTimeout(timer.current);
+        //     };
+        // }
 
     }, [currentScrollEvent]);
 

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {useDispatch} from "react-redux";
 
 import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions';
+import {setCurrentVisibleComponent} from '../../../redux/events/events.actions';
 
 import {COLORS} from '../../../styles/styles';
 
@@ -18,11 +19,12 @@ const IndexFooter = () => {
         if (inView) {
             dispatch(setCurrentBackground(COLORS.backgroundColorFooter));
             dispatch(setCurrentTextColor(COLORS.textColorFooter));
+            dispatch(setCurrentVisibleComponent('index-footer'));
         }
-    })
+    }, [dispatch, inView]);
 
     return (
-        <Container ref={ref} className="index-footer-container">
+        <Container ref={ref} className="index-footer-container" id="index-footer">
             <h1>FOOTER</h1>
             <p>more really cool things we have here, there and everywhere</p>
         </Container>

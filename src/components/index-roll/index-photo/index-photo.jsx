@@ -4,6 +4,7 @@ import {useInView} from 'react-intersection-observer';
 import styled from 'styled-components';
 
 import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions'
+import {setCurrentVisibleComponent} from '../../../redux/events/events.actions';
 
 import {COLORS} from '../../../styles/styles';
 
@@ -19,12 +20,13 @@ const IndexPhoto = () => {
     useEffect(() => {
         if (inView) {
             dispatch(setCurrentTextColor(COLORS.textColorPhoto));
-            dispatch(setCurrentBackground(COLORS.backgroundColorPhoto))
+            dispatch(setCurrentBackground(COLORS.backgroundColorPhoto));
+            dispatch(setCurrentVisibleComponent('index-photo'));
         }
-    })
+    }, [dispatch, inView]);
 
     return (
-        <Container ref={ref} className="index-photo-container">
+        <Container ref={ref} className="index-photo-container" id="index-photo">
             <h1>photography by design or by intuition but always daring</h1>
             <p>many images small or big but the text must be epic</p>
         </Container>

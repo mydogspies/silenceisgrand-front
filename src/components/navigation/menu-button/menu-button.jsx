@@ -31,10 +31,9 @@ const MenuButton = () => {
 const Button = styled(MenuButtonEffects)`
   width: 60px;
   border: none;
-  margin: 10px 10px 0 0;
   position: fixed;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 10px;
   @media all and (max-width: 1100px) and (min-width: 760px) {
     width: 40px;
   }

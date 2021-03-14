@@ -6,4 +6,4 @@ import eventsReducer from "./events/events.reducer";
 export default combineReducers({
     styles: stylesReducer,
     events: eventsReducer
-})
+});

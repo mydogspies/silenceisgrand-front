@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {useDispatch} from 'react-redux';
 
 import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions';
+import {setCurrentVisibleComponent} from '../../../redux/events/events.actions';
 
 import {COLORS} from '../../../styles/styles';
 
@@ -18,11 +19,12 @@ const IndexBlog = () => {
         if (inView) {
             dispatch(setCurrentBackground(COLORS.backgroundColorBlog));
             dispatch(setCurrentTextColor(COLORS.textColorBlog));
+            dispatch(setCurrentVisibleComponent('index-blog'));
         }
-    })
+    }, [dispatch, inView]);
 
     return (
-        <Container ref={ref} className="index-blog-container">
+        <Container ref={ref} className="index-blog-container" id="index-blog">
             <h1>BLOGS GALORE!</h1>
             <p>loads of text that must be read instead of audiovisualy ingested</p>
         </Container>

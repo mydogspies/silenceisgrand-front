@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {useDispatch} from 'react-redux';
 
 import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/styles.actions';
+import {setCurrentVisibleComponent} from '../../../redux/events/events.actions';
 
 import {COLORS} from '../../../styles/styles';
 
@@ -18,11 +19,12 @@ const IndexIllustration = () => {
         if (inView) {
             dispatch(setCurrentTextColor(COLORS.textColorIllustration));
             dispatch(setCurrentBackground(COLORS.backgroundColorIllustration));
+            dispatch(setCurrentVisibleComponent('index-illustration'));
         }
-    })
+    }, [dispatch, inView]);
 
     return (
-        <Container ref={ref} className="index-illustration-container">
+        <Container ref={ref} className="index-illustration-container" id="index-illustration-">
             <h1>ILLUSTRATION</h1>
             <p>omg so many images</p>
         </Container>
