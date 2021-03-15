@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     currentScrollEvent: null,
-    currentVisibleComponent: null
+    currentVisibleComponent: null,
+    viewHistory: []
 }
 
 const eventsReducer = (state = INITIAL_STATE, action) => {
@@ -14,6 +15,11 @@ const eventsReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 currentVisibleComponent: action.payload
+            }
+        case 'SET_VIEW_HISTORY':
+            return {
+                ...state,
+                viewHistory: [...state.viewHistory, action.payload]
             }
         default:
             return state;

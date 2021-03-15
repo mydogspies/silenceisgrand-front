@@ -1,6 +1,8 @@
-import React, {useEffect, useRef} from 'react';
-import {useSelector} from 'react-redux';
+import React, {useEffect, useRef, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import _ from 'lodash';
+
+import {setViewHistory} from "../../redux/events/events.actions";
 
 import IndexTop from '../../components/index-roll/index-top/index-top';
 import IndexPhoto from '../../components/index-roll/index-photo/index-photo';
@@ -18,6 +20,8 @@ const IndexPage = () => {
 
     const events = useSelector(state => state.events);
     const currentVisibleComponent = events.currentVisibleComponent;
+    const dispatch = useDispatch();
+
 
     /* should be set to order of index-roll comps */
     const componentArray = [
@@ -30,18 +34,25 @@ const IndexPage = () => {
     ];
 
     let history = useRef([]);
-    let next = '';
-    let previous = useRef('');
-
+    let [next, setNext] = useState('');
+    let [previous, setPrevious] = useState('');
+    let [backButtonVisibility, setBackButtonVisibility] = useState('hidden');
+    let [nextButtonVisibility, setNextButtonVisibility] = useState('visible');
 
     useEffect(() => {
 
-        if(history.current.length > 20) {
+        // dispatch(setViewHistory('#' + currentVisibleComponent));
+
+        if (history.current.length > 20) {
             history.current.shift();
         }
         history.current.push(currentVisibleComponent);
 
-        previous.current = _.nth(history.current, history.current.length - 2);
+        setPrevious(_.nth(history.current, history.current.length - 2));
+
+        /* Hide next and back buttons when they are not needed */
+        setBackButtonVisibility((currentVisibleComponent !== _.head(componentArray)) ? 'visible' : 'hidden');
+        setNextButtonVisibility((currentVisibleComponent !== _.last(componentArray)) ? 'visible' : 'hidden');
 
     }, [currentVisibleComponent]);
 
@@ -49,8 +60,8 @@ const IndexPage = () => {
         <div id="index-page">
             <AboutButton/>
             <MenuButton/>
-            <NextButton next={next} />
-            <BackButton previous={previous.current} />
+            <NextButton next={next} visibility={nextButtonVisibility}/>
+            <BackButton visibility={backButtonVisibility}/>
             <IndexTop/>
             <IndexPhoto/>
             <IndexIllustration/>

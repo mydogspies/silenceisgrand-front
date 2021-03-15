@@ -24,7 +24,7 @@ const IndexIllustration = () => {
     }, [dispatch, inView]);
 
     return (
-        <Container ref={ref} className="index-illustration-container" id="index-illustration-">
+        <Container ref={ref} className="index-illustration-container" id="index-illustration">
             <h1>ILLUSTRATION</h1>
             <p>omg so many images</p>
         </Container>

@@ -7,3 +7,8 @@ export const setCurrentVisibleComponent = id => ({
    type: 'SET_CURRENT_VISIBLE_COMPONENT',
    payload: id
 });
+
+export const setViewHistory = view => ({
+   type: 'SET_VIEW_HISTORY',
+   payload: view
+})
