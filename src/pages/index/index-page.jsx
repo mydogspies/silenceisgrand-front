@@ -18,10 +18,10 @@ import BackButton from '../../components/navigation/menu-back/menu-back';
 
 const IndexPage = () => {
 
+    const [backButtonVisibility, setBackButtonVisibility] = useState('hidden');
+    const [nextButtonVisibility, setNextButtonVisibility] = useState('hidden');
     const events = useSelector(state => state.events);
     const currentVisibleComponent = events.currentVisibleComponent;
-    const dispatch = useDispatch();
-
 
     /* should be set to order of index-roll comps */
     const componentArray = [
@@ -33,26 +33,10 @@ const IndexPage = () => {
         'index-footer'
     ];
 
-    let history = useRef([]);
-    let [next, setNext] = useState('');
-    let [previous, setPrevious] = useState('');
-    let [backButtonVisibility, setBackButtonVisibility] = useState('hidden');
-    let [nextButtonVisibility, setNextButtonVisibility] = useState('visible');
-
     useEffect(() => {
 
-        // dispatch(setViewHistory('#' + currentVisibleComponent));
-
-        if (history.current.length > 20) {
-            history.current.shift();
-        }
-        history.current.push(currentVisibleComponent);
-
-        setPrevious(_.nth(history.current, history.current.length - 2));
-
-        /* Hide next and back buttons when they are not needed */
-        setBackButtonVisibility((currentVisibleComponent !== _.head(componentArray)) ? 'visible' : 'hidden');
-        setNextButtonVisibility((currentVisibleComponent !== _.last(componentArray)) ? 'visible' : 'hidden');
+        setBackButtonVisibility((currentVisibleComponent === _.head(componentArray) ? 'hidden' : 'visible'));
+        setNextButtonVisibility((currentVisibleComponent === _.last(componentArray) ? 'hidden' : 'visible'));
 
     }, [currentVisibleComponent]);
 
@@ -60,8 +44,8 @@ const IndexPage = () => {
         <div id="index-page">
             <AboutButton/>
             <MenuButton/>
-            <NextButton next={next} visibility={nextButtonVisibility}/>
-            <BackButton visibility={backButtonVisibility}/>
+            <NextButton visibility={nextButtonVisibility}/>
+            <BackButton hashlink="true" visibility={backButtonVisibility}/>
             <IndexTop/>
             <IndexPhoto/>
             <IndexIllustration/>

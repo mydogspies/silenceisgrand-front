@@ -21,6 +21,11 @@ const eventsReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 viewHistory: [...state.viewHistory, action.payload]
             }
+        case 'POP_VIEW_HISTORY':
+            return {
+                ...state,
+                popViewHistory: [state.viewHistory.filter(view => view !== action.payload)]
+            }
         default:
             return state;
     }
