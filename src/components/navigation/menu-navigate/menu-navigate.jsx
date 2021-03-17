@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
-import {ReactComponent as Menuicon} from './menu-button.svg';
-import {MenuButtonEffects} from '../effects/menu-button-effects'
+import {ReactComponent as Menuicon} from './menu-navigate.svg';
+import {MenuIconEffects} from '../effects/menu-icon-effects'
 
-const MenuButton = () => {
+const MenuNavigate = ({visibility}) => {
 
     const store = useSelector(state => state);
     const currentTextColor = store.styles.currentTextColor;
@@ -14,26 +14,27 @@ const MenuButton = () => {
     let history = useHistory();
 
     const redirect = () => {
-        history.push('/navigate')
+        history.push('/navigate-the-site');
     }
 
     return (
-        <Button>
-            <Menuicon onClick={redirect} style={{
+        <Icon id="menu-icon-navigate">
+            <Menuicon visibility={visibility} onClick={redirect} style={{
                 fill: `${currentTextColor}`
             }}/>
-        </Button>
+        </Icon>
     );
 };
 
-
 /* CSS */
-const Button = styled(MenuButtonEffects)`
+const Icon = styled(MenuIconEffects)`
   width: 60px;
   border: none;
   position: fixed;
   right: 10px;
   top: 10px;
+  visibility: ${props => props.visibilty};
+  
   @media all and (max-width: 1100px) and (min-width: 760px) {
     width: 40px;
   }
@@ -43,4 +44,4 @@ const Button = styled(MenuButtonEffects)`
   }
 `;
 
-export default MenuButton;
+export default MenuNavigate;

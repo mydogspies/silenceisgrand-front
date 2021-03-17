@@ -5,8 +5,7 @@ import {HashLink} from 'react-router-hash-link';
 import _ from 'lodash';
 
 import {ReactComponent as Backicon} from './menu-back.svg';
-import {MenuButtonEffects} from '../effects/menu-button-effects';
-import {popViewHistory} from "../../../redux/events/events.actions";
+import {MenuIconEffects} from '../effects/menu-icon-effects';
 
 const BackButton = ({visibility, hashlink}) => {
 
@@ -34,15 +33,10 @@ const BackButton = ({visibility, hashlink}) => {
         }
     }, [viewHistory]);
 
-    function onClick() {
-        console.log('POP!');
-        dispatch(popViewHistory(hashlink));
-    }
-
     return (
         <HashLink to={previous}>
-            <Icon visibility={visibility}>
-                <Backicon  onClick={onClick} style={{
+            <Icon visibility={visibility} id="menu-icon-back">
+                <Backicon style={{
                     fill: `${textColor}`
                 }} />
             </Icon>
@@ -51,7 +45,7 @@ const BackButton = ({visibility, hashlink}) => {
 };
 
 /* CSS */
-const Icon = styled(MenuButtonEffects)`
+const Icon = styled(MenuIconEffects)`
   width: 60px;
   border: none;
   position: fixed;

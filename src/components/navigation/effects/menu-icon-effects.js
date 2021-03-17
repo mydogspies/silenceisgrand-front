@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 /* Drop shadow and animation effects for the main nav buttons on the page */
-const MenuButtonEffects = styled.div`
+const MenuIconEffects = styled.div`
   filter: drop-shadow(0.15rem 0.15rem 0.1rem rgba(0, 0, 0, 0.17));
   :hover {
     cursor: pointer;
@@ -26,4 +26,4 @@ const MenuButtonEffects = styled.div`
   }
 `;
 
-export {MenuButtonEffects};
+export {MenuIconEffects};

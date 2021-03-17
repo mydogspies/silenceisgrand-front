@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 
 import {ReactComponent as Nexticon} from './menu-next.svg';
-import {MenuButtonEffects} from '../effects/menu-button-effects';
+import {MenuIconEffects} from '../effects/menu-icon-effects';
 
 const NextButton = ({visibility}) => {
 
@@ -18,7 +18,7 @@ const NextButton = ({visibility}) => {
     }
 
     return (
-        <Icon visibility={visibility}>
+        <Icon visibility={visibility} id="menu-icon-next">
             <Nexticon onClick={redirect} style={{
                 fill: `${currentTextColor}`
             }} />
@@ -27,7 +27,7 @@ const NextButton = ({visibility}) => {
 };
 
 /* CSS */
-const Icon = styled(MenuButtonEffects)`
+const Icon = styled(MenuIconEffects)`
   width: 60px;
   border: none;
   position: fixed;
