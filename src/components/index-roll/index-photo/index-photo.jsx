@@ -7,6 +7,8 @@ import {setCurrentBackground, setCurrentTextColor} from '../../../redux/styles/s
 import {setCurrentVisibleComponent} from '../../../redux/events/events.actions';
 
 import {COLORS} from '../../../styles/styles';
+import PhotoText from '../../index-content/photo-content/photo-index-text';
+import ImageWall from '../../index-content/photo-content/photo-index-image-wall';
 
 const IndexPhoto = () => {
 
@@ -27,8 +29,12 @@ const IndexPhoto = () => {
 
     return (
         <Container ref={ref} className="index-photo-container" id="index-photo">
-            <h1>photography by design or by intuition but always daring</h1>
-            <p>many images small or big but the text must be epic</p>
+            <div id="photo-left-container">
+                <PhotoText />
+            </div>
+            <div id="photo-right-container">
+                <ImageWall />
+            </div>
         </Container>
     );
 };
@@ -38,6 +44,26 @@ const IndexPhoto = () => {
 const Container = styled.div`
   height: 100vh;
   color: ${COLORS.textColorPhoto};
+  
+  #photo-left-container {
+    height: 100vh;
+    width: 45%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+  }
+  
+  #photo-right-container {
+    height: 100vh;
+    width: 55%;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+  }
 `;
 
 export default IndexPhoto;
