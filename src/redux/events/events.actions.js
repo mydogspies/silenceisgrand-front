@@ -11,4 +11,9 @@ export const setCurrentVisibleComponent = id => ({
 export const setViewHistory = view => ({
    type: 'SET_VIEW_HISTORY',
    payload: view
+});
+
+export const popViewHistory = view => ({
+   type: 'POP_VIEW_HISTORY',
+   payload: view
 })

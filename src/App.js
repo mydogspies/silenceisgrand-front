@@ -1,77 +1,45 @@
-import React from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {Switch, Route} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from "react-redux";
 import styled from 'styled-components';
 import _ from 'lodash';
 
-import {setScrollEvent} from "./redux/events/events.actions";
+import {setViewHistory} from "./redux/events/events.actions";
 
 import './styles/global.scss';
 
 import IndexPage from './pages/index/index-page';
 
-class App extends React.Component {
+const App = () => {
 
-    constructor(props) {
-        super(props);
-        this.onScroll = this.onScroll.bind(this);
-        this.onScrollThrottle = _.throttle(this.onScroll, 500);
-    }
+    const [background, setBackground] = useState();
 
+    const dispatch = useDispatch();
+    const styles = useSelector(state => state.styles);
+    const events = useSelector(state => state.events);
+    const currentBackground = styles.currentBackground;
+    const currentVisibleComponent = events.currentVisibleComponent;
+    const viewHistory = events.viewHistory;
 
-    componentDidMount() {
+    useEffect(() => {
+        setBackground(currentBackground);
+    }, [currentBackground]);
 
-        window.addEventListener('scroll', this.onScrollThrottle);
+    useEffect(() => {
 
+            if(currentVisibleComponent && _.last(viewHistory) !== currentVisibleComponent) {
+                dispatch(setViewHistory(currentVisibleComponent));
+            }
+    }, [currentVisibleComponent]);
 
-        // TODO DEV ONLY!
-        // fetch('https://api.silenceisgrand.com/api/v1/devtests/60377db1828b6346b22e76ec')
-        //     .then(response => response.json())
-        //     .then(entries => this.setState({devtest: entries.data}))
-        //     .catch(error => {
-        //         console.log(error);
-        //         const test = {
-        //             testString: 'silenceisgrand.com 2021 all rights reserved',
-        //         }
-        //         this.setState({devtest: test})
-        //     });
-
-    }
-
-    componentWillUnmount() {
-
-        window.removeEventListener('scroll', this.onScrollThrottle);
-    }
-
-    onScroll = (e) => {
-        // console.log(e.type)
-        this.props.sendScrollEvent(e);
-    }
-
-    render() {
-
-        return (
-            <Container className='appContainer'
-                       currentcolor={this.props.currentBackground}
-                       onScroll={this.onScroll}>
-                <Switch>
-                    <Route exact path="/" component={IndexPage}/>
-                </Switch>
-            </Container>
-        )
-    }
-}
-
-const mapStateToProps = state => ({
-    currentBackground: state.styles.currentBackground
-});
-
-const mapDispatchToProps = dispatch => {
-    return {
-        sendScrollEvent: (e) => {
-            dispatch(setScrollEvent(e))
-        }
-    }
+    return (
+        <Container className="appContainer"
+                   currentcolor={background}>
+            <Switch>
+                <Route exact path="/" component={IndexPage}/>
+            </Switch>
+        </Container>
+    );
 };
 
 /* CSS - Does the color transition for backgrounds */
@@ -80,4 +48,4 @@ const Container = styled.div`
   background-color: ${props => props.currentcolor};
 `;
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

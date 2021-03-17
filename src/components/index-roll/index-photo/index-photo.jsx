@@ -23,7 +23,7 @@ const IndexPhoto = () => {
             dispatch(setCurrentBackground(COLORS.backgroundColorPhoto));
             dispatch(setCurrentVisibleComponent('index-photo'));
         }
-    }, [dispatch, inView]);
+    }, [inView]);
 
     return (
         <Container ref={ref} className="index-photo-container" id="index-photo">
