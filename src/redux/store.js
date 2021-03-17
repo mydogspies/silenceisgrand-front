@@ -9,8 +9,7 @@ import {setCurrentBackground, setCurrentTextColor} from "./styles/styles.actions
 
 const logger = createLogger({
     predicate: makeLogFilter(
-        setViewHistory,
-        popViewHistory
+        setCurrentVisibleComponent
     )
 });
 

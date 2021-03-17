@@ -44,8 +44,8 @@ const IndexPage = () => {
         <div id="index-page">
             <AboutButton/>
             <MenuButton/>
-            <NextButton visibility={nextButtonVisibility}/>
-            <BackButton hashlink="true" visibility={backButtonVisibility}/>
+            {/*<NextButton visibility={nextButtonVisibility}/>*/}
+            {/*<BackButton hashlink="true" visibility={backButtonVisibility}/>*/}
             <IndexTop/>
             <IndexPhoto/>
             <IndexIllustration/>
