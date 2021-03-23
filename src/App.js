@@ -17,11 +17,13 @@ import HomeButton from "./components/navigation/menu-home/menu-home";
 
 const App = () => {
 
+    /* Component visibility and color states*/
     const [background, setBackground] = useState();
     const [navigateVisibility, setNavigateVisibility] = useState('visible');
     const [aboutVisibility, setAboutVisibility] = useState('visible');
     const [homeVisibility, setHomeVisibility] = useState('hidden');
 
+    /* redux store*/
     const dispatch = useDispatch();
     const styles = useSelector(state => state.styles);
     const events = useSelector(state => state.events);
@@ -29,10 +31,13 @@ const App = () => {
     const currentVisibleComponent = events.currentVisibleComponent;
     const viewHistory = events.viewHistory;
 
+
+    /* set background depending on visible component*/
     useEffect(() => {
         setBackground(currentBackground);
     }, [currentBackground]);
 
+    /*set nav buttons depending on visible component*/
     useEffect(() => {
 
         if (currentVisibleComponent && _.last(viewHistory) !== currentVisibleComponent) {

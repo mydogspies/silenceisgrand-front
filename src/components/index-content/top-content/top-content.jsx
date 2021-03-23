@@ -2,8 +2,6 @@ import React, {useState, useEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
 import {useSelector} from 'react-redux';
 
-import {ReactComponent as Mycolors} from '../../../assets/sig_mycolors.svg';
-
 const TopContent = () => {
 
     const [animationId, setAnimationId] = useState('noscroll');
@@ -12,6 +10,9 @@ const TopContent = () => {
     /* Grab the state of the scroll event from the main app */
     const events = useSelector(state => state.events);
     const currentScrollEvent = events.currentScrollEvent;
+
+    // const imagePath = useRef(`../../../assets${pathImages}/index/sig_mycolors.svg`);
+    const getLogo = useRef(require('../../../assets/images/index/sig_mycolors.svg').default);
 
     useEffect(() => {
 
@@ -34,12 +35,14 @@ const TopContent = () => {
         //     };
         // }
 
-    }, [currentScrollEvent]);
+    });
+
+    console.log(getLogo.current);
 
     return (
         <Grid>
             <Logo >
-                <Mycolors id={animationId}/>
+                <img alt="logo" src={getLogo.current} />
             </Logo>
             <Headline className="headline"><h1>a manifest to art is what an airplane is to the sky</h1></Headline>
             <Paragraph><p>shapes will be written in history as they are drawn onto this canvas</p></Paragraph>

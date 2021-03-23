@@ -16,4 +16,4 @@ export const setViewHistory = view => ({
 export const popViewHistory = view => ({
    type: 'POP_VIEW_HISTORY',
    payload: view
-})
+});
