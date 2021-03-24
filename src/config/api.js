@@ -4,7 +4,8 @@ Config for paths to local assets and remote API url. Note that version,
  */
 
 const apiConfig = Object.freeze({
-    apiUrl: 'https://api.silenceisgrand.com/api/',
+    // apiUrl: 'https://api.silenceisgrand.com/api/',
+    apiUrl: 'http://localhost:5005/api',
     imagePath: '/images',
 });
 

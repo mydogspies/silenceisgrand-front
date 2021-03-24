@@ -1,18 +1,24 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
 import {useSelector} from 'react-redux';
+import Async from 'react-async'
+
+import api from '../../../config/api';
+
+const fetchLogo = () =>
+    fetch(api.apiUrl + '/v1/contents/search/mycolorsbetter')
+        .then(res => (res.ok ? res : Promise.reject(res)))
+        .then(res => res.json());
+
 
 const TopContent = () => {
 
     const [animationId, setAnimationId] = useState('noscroll');
-    const timer = useRef(0);
 
     /* Grab the state of the scroll event from the main app */
     const events = useSelector(state => state.events);
     const currentScrollEvent = events.currentScrollEvent;
 
-    // const imagePath = useRef(`../../../assets${pathImages}/index/sig_mycolors.svg`);
-    const getLogo = useRef(require('../../../assets/images/index/sig_mycolors.svg').default);
 
     useEffect(() => {
 
@@ -37,15 +43,29 @@ const TopContent = () => {
 
     });
 
-    console.log(getLogo.current);
-
+    // TODO Fix this DEV ONLY implementation of the rejected async request!!! & the "loading..." on Async.Loading
     return (
         <Grid>
-            <Logo >
-                <img alt="logo" src={getLogo.current} />
+
+            <Logo>
+                <Async promiseFn={fetchLogo}>
+                    <Async.Loading>Loading...</Async.Loading>
+                    <Async.Fulfilled>
+                        {jsonObject => {
+                            return (
+                            <img alt="logo" src={require('../../../assets' + api.imagePath + jsonObject.data.fileName).default} />
+                            )
+                        }}
+                    </Async.Fulfilled>
+                    <Async.Rejected>
+                        {error => `Something went wrong: ${error.message}`}
+                    </Async.Rejected>
+                </Async>
             </Logo>
+
             <Headline className="headline"><h1>a manifest to art is what an airplane is to the sky</h1></Headline>
             <Paragraph><p>shapes will be written in history as they are drawn onto this canvas</p></Paragraph>
+
         </Grid>
     );
 };
@@ -59,13 +79,15 @@ const Grid = styled.div`
   width: 850px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  
+
   /* The animation on scroll targeting the Logo only*/
+
   #scroll {
     animation-name: slide;
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
   }
+
   @keyframes slide {
     0% {
       transform: rotate(0deg);
