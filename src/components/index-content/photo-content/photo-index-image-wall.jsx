@@ -6,8 +6,8 @@ import PhotoWallContent from "./photo-index-wall-content";
 const PhotoIndexImageWall = () => {
 
     const compArray = [];
-    const rows = 5;
-    const columns = 5;
+    const rows = 4;
+    const columns = 4;
     let idx = 0;
 
     for (let i = 0; i < rows; i++) {
@@ -19,8 +19,8 @@ const PhotoIndexImageWall = () => {
 
             let compProps = {
                 color: color,
-                row: i+1,
-                column: j+1,
+                row: i + 1,
+                column: j + 1,
                 text: 'LOADS',
                 key: idx++
             };
@@ -31,10 +31,7 @@ const PhotoIndexImageWall = () => {
             };
 
             compArray.push(comp);
-
         }
-
-
     }
 
     return (
@@ -52,9 +49,11 @@ const PhotoIndexImageWall = () => {
 
 /* CSS */
 const Container = styled.div`
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
-grid-template-rows: 1fr 1fr 1fr 1fr;
+  width: 50vw;
+  height: 50vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 `;
 
 export default PhotoIndexImageWall;

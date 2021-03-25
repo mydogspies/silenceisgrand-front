@@ -58,7 +58,7 @@ const TopContent = () => {
                         }}
                     </Async.Fulfilled>
                     <Async.Rejected>
-                        {error => `Something went wrong: ${error.message}`}
+                        {error => `Oops, something went wrong. There should have been a sexy logo here...`}
                     </Async.Rejected>
                 </Async>
             </Logo>

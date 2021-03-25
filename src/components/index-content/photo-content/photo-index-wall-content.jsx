@@ -11,8 +11,8 @@ const PhotoWallContent = ({text, color, row, column}) => {
 };
 
 const Container = styled.div`
-  height: 180px;
-  width: 180px;
+  height: 100%;
+  width: 100%;
   background-color: ${props => props.color};
   grid-row-start: ${props => props.row};
   grid-column-start: ${props => props.column};
