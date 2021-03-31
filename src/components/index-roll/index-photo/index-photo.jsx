@@ -8,7 +8,7 @@ import {setCurrentVisibleComponent} from '../../../redux/events/events.actions';
 
 import {COLORS} from '../../../styles/styles';
 import PhotoText from '../../index-content/photo-content/photo-index-text';
-import ImageWall from '../../index-content/photo-content/photo-index-image-wall';
+import ImageWall from '../../index-content/photo-content/photo-index-images-container';
 
 const IndexPhoto = () => {
 
@@ -52,7 +52,6 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: blueviolet;
   }
   
   #photo-right-container {
@@ -62,7 +61,6 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
   }
 `;
 

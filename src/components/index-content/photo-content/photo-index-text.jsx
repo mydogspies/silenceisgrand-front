@@ -24,15 +24,24 @@ const PhotoIndexText = () => {
 
 /* CSS */
 const Container = styled.div`
-
+  position: relative;
+  right: -12%;
+  bottom: 5%;
+  width: 80%;
 `;
 
 const Headline = styled.div`
-    
+  position: relative;
+  left: 20px;
+  bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  transform: rotate(-0.5deg);
 `;
 
 const Paragraph = styled.div`
-    
+  font-size: 20px;
+  transform: rotate(0.2deg);
 `;
 
 export default PhotoIndexText;
