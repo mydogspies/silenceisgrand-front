@@ -5,6 +5,10 @@ import ImagesData from "./photo-index-images-data";
 
 const ImagesContainer = () => {
 
+    // TODO should make list of contentSet and pass each into the compProps
+
+    // TODO fetch a list of contentSet with location:"index"
+
     /*Define the content array and populate */
     let idx = 0;
     let rowIdx= 1;

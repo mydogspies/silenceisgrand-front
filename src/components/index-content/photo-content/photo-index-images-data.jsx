@@ -6,6 +6,9 @@ import ImagesComponent from './photo-index-images-component.';
 const ImagesData = ({color, row, column}) => {
 
     // TODO this is where the image array and text is defined!
+    // TODO should receive a contentSet via props and resolve it
+
+    // TODO fetch a lots of images from the given contentSet
 
     const imageArray = [
         'test_img_1.png',
