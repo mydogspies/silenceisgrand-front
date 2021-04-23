@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux";
 import styled from 'styled-components';
@@ -15,7 +15,11 @@ import AboutButton from "./components/navigation/menu-about/menu-about";
 import MenuNavigate from "./components/navigation/menu-navigate/menu-navigate";
 import HomeButton from "./components/navigation/menu-home/menu-home";
 
+import siteConfig from './config/siteConfig';
+
 const App = () => {
+
+    // TODO siteConfig is only for development... this will be another method later
 
     /* Component visibility and color states*/
     const [background, setBackground] = useState();
@@ -50,18 +54,30 @@ const App = () => {
 
     }, [currentVisibleComponent]);
 
-    return (
-        <Container id="app-container" className="appContainer" currentcolor={background}>
-            <HomeButton visibility={homeVisibility}/>
-            <AboutButton visibility={aboutVisibility} />
-            <MenuNavigate visibility={navigateVisibility} />
-            <Switch>
-                <Route exact path="/" component={IndexPage} />
-                <Route path="/about-silenceisgrand" component={AboutPage} />
-                <Route path="/navigate-the-site" component={NavigatePage} />
-            </Switch>
-        </Container>
-    );
+    if(siteConfig.siteOnline) {
+        return (
+            <Container id="app-container" className="appContainer" currentcolor={background}>
+                <HomeButton visibility={homeVisibility}/>
+                <AboutButton visibility={aboutVisibility} />
+                <MenuNavigate visibility={navigateVisibility} />
+                <Switch>
+                    <Route exact path="/" component={IndexPage} />
+                    <Route path="/about-silenceisgrand" component={AboutPage} />
+                    <Route path="/navigate-the-site" component={NavigatePage} />
+                </Switch>
+            </Container>
+        );
+    } else {
+        return (
+            <Container id="app-container" className="appContainer" currentcolor={background}>
+                <Switch>
+                    <Route path="/" component={IndexPage} />
+                </Switch>
+            </Container>
+        );
+    }
+
+
 };
 
 /* CSS - Does the color transition for backgrounds */

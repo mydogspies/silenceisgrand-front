@@ -26,6 +26,7 @@
   },
   "scripts": {
     "start": "PORT=3005 react-scripts start",
+    "deploy-production": "react-scripts build && scp -r ./build/* root@178.62.236.42:/var/www/silenceisgrand.com/html",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
