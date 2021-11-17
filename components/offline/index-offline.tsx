@@ -5,23 +5,20 @@ import Image from "next/image";
 const IndexOffline = () => {
 
     return (
-        <Content>
+        <Parent>
             <Grid>
-
                 <Logo>
                     <Image alt="logo" src="/assets/local/sig_mycolors.svg" height="400px" width="400px"/>
                 </Logo>
 
                 <Headline className="headline"><h1>a manifest to art is what an airplane is to the sky</h1></Headline>
                 <Paragraph><p>the site is temporarily offline due to maintenance - we will be soon back</p></Paragraph>
-
             </Grid>
-        </Content>
+        </Parent>
     );
 };
 
-/* CSS */
-const Content = styled.div`
+const Parent = styled.div`
   background-color: #F5DE69;
   height: 100vh;
   display: flex;
@@ -36,18 +33,6 @@ const Grid = styled.div`
   width: 850px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-
-  @keyframes slide {
-    0% {
-      transform: rotate(0deg);
-    }
-    40% {
-      transform: rotate(-5deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
 `;
 
 const Logo = styled.div`
