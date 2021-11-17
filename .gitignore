@@ -1,6 +1,6 @@
 # ignore file for SILENCEISGRAND-FRONT
 # intellij
-.iml
+.idea
 
 # project specific files & dirs
 /public/assets/remote
